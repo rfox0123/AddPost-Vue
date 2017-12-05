@@ -8,7 +8,7 @@
 Yarn install or npm install
 
 # run
-Yarn run dev or npm install
+Yarn run dev or npm run dev
 
 
 
