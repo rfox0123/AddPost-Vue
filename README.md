@@ -5,10 +5,10 @@
 ## Build Setup
 
 # install dependencies
-Yarn install
+Yarn install or npm install
 
-# serve with hot reload at localhost:8080
-Yarn run dev
+# run
+Yarn run dev or npm install
 
 
 
