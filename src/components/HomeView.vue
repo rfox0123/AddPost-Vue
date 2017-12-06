@@ -2,12 +2,14 @@
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--3-col mdl-cell mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
       <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
-        <div v-for="picture in this.getAdds()" class="image-card" @click="displayDetails(picture['.key'])">
-          <div class="image-card__picture">
-            <img :src="picture.url"/>
+        <div v-for="picture in this.$root.add" class="image-card" @click="displayDetails(picture['.key'])">
+          <div>
+            <h4>Title</h4>
+            <h6>{{ picture.title }}</h6>
           </div>
-          <div class="image-card__comment mdl-card__actions">
-            <span>{{ picture.comment }}</span>
+          <div>
+            <h4>Description</h4>
+            <span>{{ picture.description }}</span>
           </div>
         </div>
       </div>   
@@ -22,29 +24,29 @@
     methods: {
       displayDetails (id) {
         this.$router.push({ name: 'detail', params: { id: id } })
-      }
-    },
-    getAdds () {
-      if (navigator.onLine) {
-        this.saveAddsToCache()
-        return this.$root.add
-      } else {
-        return JSON.parse(localStorage.getItem('adds'))
-      }
-    },
-    saveAddsToCache () {
-      this.$root.$firebaseRefs.add.orderByChild('created_at').once('value', (snapchot) => {
-        let cachedAdds = []
-        snapchot.forEach((addSnapchot) => {
-          let cachedAdd = addSnapchot.val()
-          cachedAdd['.key'] = addSnapchot.key
-          cachedAdds.push(cachedAdd)
+      },
+      getAdds () {
+        if (navigator.onLine) {
+          this.saveAddsToCache()
+          return this.$root.add
+        } else {
+          return JSON.parse(localStorage.getItem('adds'))
+        }
+      },
+      saveAddsToCache () {
+        this.$root.$firebaseRefs.add.orderByChild('created_at').once('value', (snapchot) => {
+          let cachedAdds = []
+          snapchot.forEach((addSnapchot) => {
+            let cachedAdd = addSnapchot.val()
+            cachedAdd['.key'] = addSnapchot.key
+            cachedAdds.push(cachedAdd)
+          })
+          localStorage.setItem('adds', JSON.stringify(cachedAdds))
         })
-        localStorage.setItem('cats', JSON.stringify(cachedAdds))
-      })
-    },
-    mounted () {
-      this.saveAddsToCache()
+      },
+      mounted () {
+        this.saveAddsToCache()
+      }
     }
   }
 </script>
