@@ -1,23 +1,16 @@
 <template>
-  <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--8-col">
-      <div class="picture">
-        <h4>{{ add.title }}</h4>
-      </div>
-      <div class="info">
-        <span>{{ add.description }}</span>
-      </div>
-    </div>
-    <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
-      <div class="comment">
-        <span>{{ add.info }}</span>
-      </div>
-      <div class="actions">
-        <router-link class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" to="/post">
-          ANSWER
-        </router-link>
-      </div>
-    </div>
+  <div>
+    <h4>{{ add.title }}</h4>
+    <br />
+    <h6>Description</h6>
+    <span>{{ add.description }}</span>
+    <br />
+    <span>{{ add.info }}</span>
+    <br/>
+    <br />
+    <router-link class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" to="/post">
+      ANSWER
+    </router-link>
   </div>
 </template>
 

@@ -1,22 +1,20 @@
 <template>
-    <div class="mdl-grid">
-      <div class="mdl-cell mdl-cell--3-col mdl-cell mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
-      <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
-        <div v-for="picture in this.$root.add" class="image-card" @click="displayDetails(picture['.key'])">
-          <div>
-            <h4>Title</h4>
-            <h6>{{ picture.title }}</h6>
-          </div>
-          <div>
-            <h4>Description</h4>
-            <span>{{ picture.description }}</span>
-          </div>
+  <div class="mdl-grid">
+    <div v-for="picture in this.$root.add" @click="displayDetails(picture['.key'])">
+      <div class="demo-card-square mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title mdl-card--expand">
+          <h5 class="mdl-card__title-text">{{ picture.title }}</h5>
         </div>
-      </div>   
+        <div>
+          <h5>Description</h5>
+          <span>{{ picture.description }}</span>
+        </div>
+      </div>
       <router-link class="add-picture-button mdl-button mdl-js-button mdl-button--fab mdl-button--colored" to="/post">
         <i class="material-icons">add</i>
       </router-link>
     </div>
+  </div>
 </template>
 
 <script>
@@ -77,5 +75,12 @@
     color: #fff;
     font-size: 14px;
     font-weight: bold;
+  }
+  .demo-card-square > .mdl-card__title {
+    color: #fff;
+    background: black;
+  }
+  .demo-card-square mdl-card mdl-shadow--2dp{
+    padding-right: 5em;
   }
 </style>
